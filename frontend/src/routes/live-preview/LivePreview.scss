@@ -1,0 +1,93 @@
+
+.webcam-preview-container {
+  background-color: black;
+
+  button {
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    width: 50%;
+  }
+
+  img {
+    position: relative;
+    width: 60%; /* for IE 6 */
+
+  }
+}
+
+.webcam-preview-controller {
+  .well {
+    padding: 1%;
+  }
+
+  .btn {
+    display: table;
+    margin: 2% auto;
+    width: 60%;
+  }
+
+  .results {
+    padding: 1% 5%;
+
+    .row {
+      margin: 1% 1%;
+    }
+
+    p {
+      // font-weight: bold;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: capitalize;
+
+    }
+
+    .results-nav {
+      margin-top: 4%;
+      margin-bottom: 4%;
+      i {
+        cursor: pointer;
+        color: #2AA198;
+      }
+    }
+
+    .emoji{
+      margin: 10px;
+      font-size: 50px;
+    }
+  }
+
+}
+
+#affdex_elements video {
+  display: none;
+  position: relative;
+  width: 60%; /* for IE 6 */
+}
+
+#face_video_canvas {
+  position: relative;
+  width: 60%; /* for IE 6 */
+}
+
+//@import "~animate.css";
+.results-transitions-enter.results-transitions-enter-active {
+  animation-delay: 0.6s;
+  animation: 1s fadeIn ;
+}
+
+
+
+//@gray-base:              #000;
+//@gray-darker:            #002B36;
+//@gray-dark:              #073642;
+//@gray:                   #839496;
+//@gray-light:             #EEE8D5;
+//@gray-lighter:           #FDF6E3;
+//
+//@brand-primary:         #B58900;
+//@brand-success:         #2AA198;
+//@brand-info:            #268BD2;
+//@brand-warning:         #CB4B16;
+//@brand-danger:          #D33682;
+
