@@ -5,49 +5,17 @@ import  cameraImage  from '../../modules/affdex/camera.jpg'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 var io2 = require('socket.io-client');
 
-const initialState = {
-	preview: false,
-	activeResultsPage: 0,
-	stream: false,
-	emotions: {
-		anger: 0.5,
-		contempt: 0.5,
-		disgust: 0.5,
-		engagement: 0.5,
-		fear: 0.5,
-		joy: 0.5,
-		sadness: 0.5,
-		surprise: 0.5,
-		valence: 0.5
-	},
-	emojis: {
-		relaxed: 0.5,
-		smiley: 0.5,
-		laughing: 0.5,
-		kissing: 0.5,
-		disappointed: 0.5,
-		rage: 0.5,
-		smirk: 0.5,
-		wink: 0.5,
-		stuckOutTongueWinkingEye: 0.5,
-		stuckOutTongue: 0.5,
-		flushed: 0.5,
-		scream: 0.5,
-		dominantEmoji: "😐"
-	},
-	appearance: {
-		gender: "-",
-		glasses: "-",
-		age: "-",
-		ethnicity: "-"
-	},
-}
+
+import initialState from './components/initialState'
+import EmotionsBars from './components/EmotionsBars'
+import EmojisBars from './components/EmojisBars'
+import UserInfo from './components/UserInfo'
 
 export class LivePreview extends React.Component {
 	constructor(args) {
-		super(args)
-		this.state = initialState
-		this.socket = false
+		super(args);
+		this.state = initialState;
+		this.socket = false;
 	}
 
 	componentDidMount() {
@@ -117,17 +85,23 @@ export class LivePreview extends React.Component {
 		if (this.detector && this.detector.isRunning) {
 			this.detector.stop();
 			this.setState({preview: false})
+			this.stopStream()
 		}
 	}
 
 	startStream = () => {
+		let id = new Date().getTime()
 		this.setState({
 			stream:{
 				run: true,
-				id: new Date().getTime()
+				id
 			}
-		})
+		});
+		if(!this.state.preview){
+			this.startPreview()
+		}
 		this.socket = io2.connect('localhost:8080');
+		this.socket.emit("new-stream", id)
 	};
 
 	stopStream = () => {
@@ -162,7 +136,7 @@ export class LivePreview extends React.Component {
 
 	render() {
 		return (
-			<div className="row">
+			<div className="row content">
 				<h1 className="text-center">Live Preview</h1>
 				<hr/>
 				<div className="col-md-7">
@@ -205,118 +179,5 @@ export class LivePreview extends React.Component {
 		)
 	}
 }
-
-const emotions = [
-	{type: 'contempt', color: 'danger'},
-	{type: 'fear', color: 'info'},
-	{type: 'engagement', color: 'default'},
-	{type: 'sadness', color: 'info'},
-	{type: 'disgust', color: 'default'},
-	{type: 'valence', color: 'danger'},
-	{type: 'joy', color: 'success'},
-	{type: 'anger', color: 'warning'},
-	{type: 'surprise', color: 'success'}
-]
-
-const EmotionsBars = (props) => (
-	<div className="row">
-		<br/>
-		<h3 className="text-center">Emotions</h3>
-		<hr/>
-		{
-			emotions.map((emotion) => (
-				<div key={emotion.type}>
-					<div className="col-sm-12 col-md-5">
-						<p className="text-muted"><strong>{emotion.type} :</strong></p>
-					</div>
-					<div className="col-sm-12 col-md-7">
-						<div className="progress progress-striped active">
-							<div className={"progress-bar progress-bar-" + emotion.color}
-									 style={{width: props.emotionsValues[emotion.type] * 10 + "%"}}></div>
-						</div>
-					</div>
-				</div>
-			))
-		}
-	</div>
-)
-
-
-
-const emojis = [
-	{type: 'relaxed', color: 'default', label: "relaxed"},
-	{type: 'smiley', color: 'info', label: "smiley"},
-	{type: 'laughing', color: 'success', label: "laughing"},
-	{type: 'kissing', color: 'warning', label: "kissing"},
-	{type: 'disappointed', color: 'danger', label: "disappointed"},
-	{type: 'rage', color: 'default', label: "rage"},
-	{type: 'smirk', color: 'info', label: "smirk"},
-	{type: 'wink', color: 'success', label: "wink"},
-	{type: 'stuckOutTongueWinkingEye', color: 'warning', label: "Tongue & Eye"},
-	{type: 'stuckOutTongue', color: 'danger', label: "Tongue"},
-	{type: 'flushed', color: 'default', label: "flushed"},
-	{type: 'scream', color: 'info', label: "scream"},
-]
-
-const EmojisBars = (props) => (
-	<div className="row">
-		<br/>
-		<h3 className="text-center">Emojis </h3>
-		<hr/>
-		<h1 className="text-center emoji">{props.emojisValues.dominantEmoji}</h1>
-		{
-			emojis.map((emoji) => {
-				if (emoji.type != "dominantEmoji") {
-					return (
-						<div key={emoji.type}>
-							<div className="col-sm-12 col-md-5">
-								<p className="text-muted"><strong>{emoji.label} :</strong></p>
-							</div>
-							<div className="col-sm-12 col-md-7">
-								<div className="progress progress-striped active">
-									<div className={"progress-bar progress-bar-" + emoji.color}
-											 style={{width: props.emojisValues[emoji.type] * 10 + "%"}}></div>
-								</div>
-							</div>
-						</div>
-					)
-				}
-				else{
-					return null
-				}
-			})
-		}
-	</div>
-)
-
-
-
-const appearance = [
-	{type: 'gender'},
-	{type: 'glasses'},
-	{type: 'age'},
-	{type: 'ethnicity'},
-]
-
-const UserInfo = (props) => (
-	<div className="row">
-		<br/>
-		<h3 className="text-center">User Info</h3>
-		<hr/>
-		{
-			appearance.map((feature) => (
-				<div key={feature.type}>
-					<div className="col-sm-12 col-md-5">
-						<p className="text-muted"><strong>{feature.type} :</strong></p>
-					</div>
-					<div className="col-sm-12 col-md-7">
-						<p className="text-primary"><strong>{props.appearanceValues[feature.type]}</strong></p>
-					</div>
-				</div>
-			))
-		}
-	</div>
-)
-
 
 export default LivePreview

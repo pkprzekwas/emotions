@@ -1,0 +1,23 @@
+table {
+  i{
+    cursor: pointer;
+    transition: all 0.5s;
+    &:hover{
+      transform: scale(1.3);
+    }
+  }
+}
+
+//@gray-base:              #000;
+//@gray-darker:            #002B36;
+//@gray-dark:              #073642;
+//@gray:                   #839496;
+//@gray-light:             #EEE8D5;
+//@gray-lighter:           #FDF6E3;
+//
+//@brand-primary:         #B58900;
+//@brand-success:         #2AA198;
+//@brand-info:            #268BD2;
+//@brand-warning:         #CB4B16;
+//@brand-danger:          #D33682;
+

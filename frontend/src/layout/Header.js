@@ -29,7 +29,7 @@ export default class Header extends React.Component {
 							<span className="icon-bar"/>
 							<span className="icon-bar"/>
 						</button>
-						<a className="navbar-brand" href="#"><i className="fa fa-heart" aria-hidden="true"></i> Emotions</a>
+						<a className="navbar-brand" href="/"><i className="fa fa-heart" aria-hidden="true"></i> Emotions</a>
 					</div>
 
 					<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-2">

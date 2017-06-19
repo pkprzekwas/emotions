@@ -1,6 +1,8 @@
-import LivePreview from './live-preview/LivePreview'
 import { Route } from 'react-router-dom'
 import React from "react"
+
+import LivePreview from './live-preview/LivePreview'
+import History from './history/History'
 
 export const routesArray = [
 	{
@@ -15,7 +17,7 @@ export const routesArray = [
 		title: "History",
 		icon: "fa-home",
 		path: "/history",
-		component: (() => <h1>dsfdfsfdss</h1>)
+		component: History
 	}
 ]
 
