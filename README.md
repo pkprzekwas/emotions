@@ -3,14 +3,13 @@
 
 ### Wymagania:
 1. Nodejs
-2. Docker (TODO)
+2. Docker
+3. Docker-compose
 
 ### Lokalne debugowanie:
 
-Będąc w katalogu `/backend`:
 ```bash
-npm install
-npm run start
+docker-compose up
 ```
 NOTE: Domyślny port 8080. Wyniki streamu po jego zakończeniu są na `localhost:8080/cache`.
 
