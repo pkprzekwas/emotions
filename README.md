@@ -1,11 +1,15 @@
-# emotions
+# Projekt Grupowy 2017
+ 
 
-szybki start 
-============
-1. wchodzimy do backend 
-2. npm install
-3. npm run start
+### Wymagania:
+1. Nodejs
+2. Docker (TODO)
 
-apka działa na localhost:8080
+### Lokalne debugowanie:
 
-wyniki streamu po jego zakończeniu są na localhost:8080/cache
+Będąc w katalogu `/backend`:
+```bash
+npm install
+npm run start
+```
+NOTE: Domyślny port 8080. Wyniki streamu po jego zakończeniu są na localhost:8080/cache
