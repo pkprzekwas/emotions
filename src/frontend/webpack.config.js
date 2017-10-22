@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const HOST = process.env.HOST || "127.0.0.1";
+const HOST = process.env.HOST || "192.168.56.101";
 const PORT = process.env.PORT || "8888";
 
 loaders.push({
@@ -46,7 +46,7 @@ module.exports = {
     host: HOST,
 		proxy: {
 			'/api': {
-				target: 'http://localhost:8080/',
+				target: 'http://' + HOST + ':8080/',
 				secure: false
 			}
 		},

@@ -100,7 +100,7 @@ export class LivePreview extends React.Component {
 		if(!this.state.preview){
 			this.startPreview()
 		}
-		this.socket = io2.connect('localhost:8080');
+		this.socket = io2('http://192.168.56.101:8080');
 		this.socket.emit("new-stream", id)
 	};
 
@@ -150,8 +150,8 @@ export class LivePreview extends React.Component {
 					<div className=" webcam-preview-controller">
 						<div className="form-horizontal well">
 							{ this.state.stream ?
-								<button href="#" className="btn btn-warning" onClick={this.stopStream}>Stop Stream</button>:
-								<button href="#" className="btn btn-success" onClick={this.startStream}>Start Stream</button>
+								<button href="#" className="btn btn-warning" onClick={this.stopStream}>Stop WTF</button>:
+								<button href="#" className="btn btn-success" onClick={this.startStream}>Start WTF</button>
 							}
 							<button href="#" className="btn btn-warning" onClick={this.stopPreview}>Stop</button>
 						</div>
