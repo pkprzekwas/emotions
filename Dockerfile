@@ -8,6 +8,5 @@ RUN apt-get update && \
     apt-get install -y nodejs && \
     mkdir /app/
 ADD . /app/
-WORKDIR /app/src/backend
-RUN npm install
-CMD ["npm", "start"]
+WORKDIR /app/
+CMD ["./run.sh"]

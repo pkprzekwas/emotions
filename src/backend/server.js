@@ -23,10 +23,9 @@ console.log('App working on port: ' + port);
 
 // Socket.io Events
 
-io.on('connection', (socket) => {
+io.on('connect', (socket) => {
     console.log('New socket connection');
     socket.on("new-stream", id => {
-        console.log("neeww")
         let logger = new winston.Logger({
             level: 'info',
             transports: [
